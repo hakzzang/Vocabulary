@@ -1,0 +1,28 @@
+[versions]
+agp = "8.4.0" # Maximum tested Android Gradle Plugin version
+kotlin = "1.9.23" # 1.9.23은 composeMultiplatform 1.6.1을 min으로 사용한다.
+compose = "2.0.0-RC3"
+jetbrain-compose = "1.6.10"
+androidx-activityCompose = "1.9.0"
+koinCore = "3.6.0-wasm-alpha2" # wasm
+koinCompose = "1.1.5"
+material3WindowSizeClassMultiplatform = "0.5.0"
+
+[plugins]
+androidApplication = { id = "com.android.application", version.ref = "agp" }
+androidLibrary = { id = "com.android.library", version.ref = "agp" }
+kotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+kotlinCocoapods = { id = "org.jetbrains.kotlin.native.cocoapods", version.ref = "kotlin" }
+jetbrainsKotlinJvm = { id = "org.jetbrains.kotlin.jvm", version = "2.0.0-RC2" }
+kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "compose" }
+compose-multiplatform = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "compose" }
+jetbrainsCompose = { id = "org.jetbrains.compose", version.ref = "jetbrain-compose" }
+
+[libraries]
+kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
+androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activityCompose" }
+koin-core = { module = "io.insert-koin:koin-core", version.ref = "koinCore" }
+koin-compose = { module = "io.insert-koin:koin-compose", version.ref = "koinCompose"}
+koin-android = { module = "io.insert-koin:koin-android", version.ref = "koinCore" }
+compose-html = { module = "org.jetbrains.compose.html:html-core-js", version="1.6.10-rc03"}
+material3-window-size-multiplatform = { module = "dev.chrisbanes.material3:material3-window-size-class-multiplatform", version.ref = "material3WindowSizeClassMultiplatform" }
