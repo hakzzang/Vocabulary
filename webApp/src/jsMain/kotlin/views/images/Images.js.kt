@@ -6,8 +6,8 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import com.damda.design_system.core.ImageResourceLoader
-import com.damda.design_system.core.ImageResult
+import com.damda.vocabulary.core.ImageResourceLoader
+import com.damda.vocabulary.core.ImageResult
 import com.damda.webapp.views.layouts.JSCircularProgressIndicator
 import com.damda.webapp.views.core.JSViewPadding
 import org.jetbrains.compose.web.css.AlignItems

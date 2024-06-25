@@ -17,10 +17,10 @@ kotlin {
                 into("$buildDir/processedResources/js/main")
             }
             commonWebpackConfig {
-                outputFileName = "design_system_output.js"
+                outputFileName = "vocabulary_output.js"
             }
             webpackTask {
-                mainOutputFileName = "design_system_output.js"
+                mainOutputFileName = "vocabulary_output.js"
             }
             binaries.executable()
         }
@@ -34,7 +34,7 @@ kotlin {
                 into("$buildDir/processedResources/wasmJs/main")
             }
             commonWebpackConfig {
-                outputFileName = "design_system_output.js"
+                outputFileName = "vocabulary_output.js"
             }
             binaries.executable()
         }

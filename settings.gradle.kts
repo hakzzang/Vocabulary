@@ -23,7 +23,7 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "design-system"
+rootProject.name = "vocabulary"
 include(":androidApp")
 include(":shared")
 include(":desktop")

@@ -60,7 +60,7 @@ kotlin {
                 )
             }
             webpackTask {
-                mainOutputFileName = "design_system_output.js"
+                mainOutputFileName = "vocabulary_output.js"
             }
         }
     }
@@ -100,7 +100,7 @@ kotlin {
 
 
 android {
-    namespace = "com.damda.design_system"
+    namespace = "com.damda.vocabulary"
     compileSdk = 34
 
     defaultConfig {

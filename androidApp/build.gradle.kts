@@ -6,10 +6,10 @@ plugins {
 }
 
 android {
-    namespace = "com.damda.design_system.android"
+    namespace = "com.damda.vocabulary.android"
     compileSdk = 34
     defaultConfig {
-        applicationId = "com.damda.design_system.android"
+        applicationId = "com.damda.vocabulary.android"
         minSdk = 26
         targetSdk = 34
         versionCode = 1

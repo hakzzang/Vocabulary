@@ -1,7 +1,7 @@
 package com.damda.webapp.views.layouts
 
 import androidx.compose.runtime.Composable
-import com.damda.design_system.core.ImageResourceLoader
+import com.damda.vocabulary.core.ImageResourceLoader
 import com.damda.webapp.views.images.JSImage
 import com.damda.webapp.views.texts.StyledText
 import com.damda.webapp.views.core.JSViewPadding
