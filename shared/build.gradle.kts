@@ -76,9 +76,9 @@ kotlin {
             implementation(compose.material3)
             implementation(libs.material3.window.size.multiplatform)
 
-            implementation("io.ktor:ktor-client-core:3.0.0-wasm2")
-            implementation("io.ktor:ktor-client-content-negotiation:3.0.0-wasm2")
-            implementation("io.ktor:ktor-serialization-kotlinx-json:3.0.0-wasm2")
+            implementation(libs.ktor.client.core)
+            implementation(libs.ktor.client.content.negotiation)
+            implementation(libs.ktor.serialization.kotlinx.json)
         }
         val commonMain by getting {
             resources.srcDir("src/commonMain/resources")

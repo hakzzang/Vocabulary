@@ -21,6 +21,41 @@ import androidx.compose.ui.unit.dp
 import com.damda.vocabulary.core.ImageResourceLoader
 
 @Composable
+fun AsyncImage(
+    imageResourceLoader: ImageResourceLoader,
+    imageResName: String,
+    contentDescription: String = "",
+    size: Int = 40,
+    contentScale: ContentScale = ContentScale.Crop,
+    modifier: Modifier
+) {
+    var bitmap by remember { mutableStateOf<ImageBitmap?>(null) }
+    var isLoading by remember { mutableStateOf(true) }
+
+
+    LaunchedEffect(imageResName) {
+        bitmap = imageResourceLoader.loadImageResource(imageResName)
+        isLoading = false
+    }
+
+    Box(modifier = modifier) {
+        if (isLoading) {
+            CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
+        } else {
+            bitmap?.let {
+                Image(
+                    bitmap = it,
+                    contentDescription = contentDescription,
+                    modifier = Modifier
+                        .size(size.dp),
+                    contentScale = contentScale
+                )
+            }
+        }
+    }
+}
+
+@Composable
 fun RoundedImage(
     imageResourceLoader: ImageResourceLoader,
     imageResName: String,

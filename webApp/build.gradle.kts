@@ -53,7 +53,6 @@ kotlin {
                 implementation(compose.components.resources)
                 implementation(compose.html.core)
                 implementation(compose.web.core)
-
             }
         }
         val wasmJsMain by getting {
