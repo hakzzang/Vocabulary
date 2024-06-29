@@ -10,6 +10,7 @@ import androidx.compose.ui.window.WindowPosition
 import androidx.compose.ui.window.application
 import androidx.compose.ui.window.rememberWindowState
 import com.damda.vocabulary.NativeMainApp
+import com.damda.vocabulary.core.FontLoader
 import com.damda.vocabulary.core.ImageResourceLoader
 
 fun main() {
@@ -24,7 +25,7 @@ fun main() {
             ),
         ) {
             Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-                NativeMainApp(ImageResourceLoader())
+                NativeMainApp(ImageResourceLoader(), FontLoader())
             }
         }
     }

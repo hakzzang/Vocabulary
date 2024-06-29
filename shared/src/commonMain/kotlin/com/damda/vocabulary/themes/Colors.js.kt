@@ -10,7 +10,8 @@ object Colors {
     val secondaryVariantColor = Color(0xFF603544)
 
     // Background and surface colors
-    val backgroundColor = Color(0xFFFDFBFD)
+    val backgroundColor = Color(0xFFFFF6DC)
+    val onBackgroundColor = Color(0xFFf2d78a)
     val surfaceColor = Color(0xFF7A6F7E)
     val errorColor = Color(0xFF7C535A)
 

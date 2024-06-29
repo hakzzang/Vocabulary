@@ -30,7 +30,7 @@ import com.damda.vocabulary.ui.views.views.AsyncImage
 
 @Composable
 fun GreetingCardSection(imageResourceLoader: ImageResourceLoader) {
-    CardView {
+    ShadowCard {
         Column {
             // Image 영역
             CardHeader(imageResourceLoader)
@@ -42,7 +42,7 @@ fun GreetingCardSection(imageResourceLoader: ImageResourceLoader) {
 }
 
 @Composable
-fun CardView(
+fun ShadowCard(
     modifier: Modifier = Modifier, // Modifier 타입으로 변경
     backgroundColor: Color = Color.White, // Compose의 Color로 변경
     borderColor: Color = Color.Black, // Compose의 Color로 변경
@@ -107,7 +107,7 @@ fun CardBody() {
             .padding(16.dp)
     ) {
         RegularText(
-            text = "결혼 주요 정보",
+            text = "1Follower is 1develop second",
             fontSize = 20.sp,
             fontWeight = FontWeight.Bold,
             color = Color.Black,
@@ -115,19 +115,19 @@ fun CardBody() {
             style = MaterialTheme.typography.bodyMedium
         )
         EmojiText(
-            text = "\uD83D\uDD70\uFE0F 시간: 2024년 10월 20일, 오전 11시 30분",
+            text = "\uD83D\uDD70\uFE0F 시작: 2024년 6월 29일, 오전 1시31분",
             fontSize = 16.sp,
             color = Color.Black,
             modifier = Modifier.padding(bottom = 4.dp)
         )
         EmojiText(
-            text = "\uD83D\uDCCD 위치: 경기 성남시 분당구 탄천상로 151번길 20",
+            text = "\uD83D\uDCCD 안드로이드 앱 개발",
             fontSize = 16.sp,
             color = Color.Black,
             modifier = Modifier.padding(bottom = 4.dp)
         )
         RegularText(
-            text = "분당앤스퀘어 예식장 (오리역 6번출구 앞)",
+            text = "시작해볼까요?",
             fontSize = 16.sp,
             color = Color.Black
         )

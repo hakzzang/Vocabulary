@@ -16,18 +16,20 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontFamily
 import com.damda.vocabulary.core.FontLoader
 import com.damda.vocabulary.core.ImageResourceLoader
+import com.damda.vocabulary.themes.Colors
 import com.damda.vocabulary.themes.LocalEmojiFontFamily
 import com.damda.vocabulary.themes.LocalRegularFontFamily
+import com.damda.vocabulary.themes.VocabularyTheme
 import com.damda.vocabulary.ui.HomeScreen
 import com.damda.vocabulary.ui.ProfileScreen
 import com.damda.vocabulary.ui.SearchScreen
 import com.damda.vocabulary.ui.views.bottombars.BottomBar
 import com.damda.vocabulary.ui.views.bottombars.NavigationRails
 import com.damda.vocabulary.ui.views.navigations.NAVIGATION_ITEMS
-import com.damda.vocabulary.ui.views.views.LoadAndDisplayImage
 
 @Composable
 fun NativeMainApp(
@@ -48,25 +50,26 @@ fun NativeMainApp(
     val windowSize = rememberWindowSize()
 
     if (regularFontFamily != null && emojiFontFamily != null) {
-        CompositionLocalProvider(
-            LocalRegularFontFamily provides regularFontFamily!!,
-            LocalEmojiFontFamily provides emojiFontFamily!!
-        ) {
-            Scaffold(bottomBar = {
-                if (windowSize == WindowWidthSizeClass.Compact) {
-                    BottomBar(NAVIGATION_ITEMS, selectedItem) { selectedItem = it }
-                }
-            }) { innerPadding ->
-                Row(Modifier.padding(innerPadding)) {
-                    if (windowSize == WindowWidthSizeClass.Medium || windowSize == WindowWidthSizeClass.Expanded) {
-                        NavigationRails(NAVIGATION_ITEMS, selectedItem) { selectedItem = it }
+        VocabularyTheme {
+            CompositionLocalProvider(
+                LocalRegularFontFamily provides regularFontFamily!!,
+                LocalEmojiFontFamily provides emojiFontFamily!!
+            ) {
+                Scaffold(bottomBar = {
+                    if (windowSize == WindowWidthSizeClass.Compact) {
+                        BottomBar(NAVIGATION_ITEMS, selectedItem) { selectedItem = it }
                     }
-                    LoadAndDisplayImage(imageResourceLoader, "pic8.jpg")
-                    Box(modifier = Modifier.padding(innerPadding).weight(1f)) {
-                        when (selectedItem) {
-                            0 -> HomeScreen(imageResourceLoader)
-                            1 -> SearchScreen()
-                            2 -> ProfileScreen()
+                }, modifier = Modifier) { innerPadding ->
+                    Row(Modifier.padding(innerPadding)) {
+                        if (windowSize == WindowWidthSizeClass.Medium || windowSize == WindowWidthSizeClass.Expanded) {
+                            NavigationRails(NAVIGATION_ITEMS, selectedItem) { selectedItem = it }
+                        }
+                        Box(modifier = Modifier.padding(innerPadding).weight(1f)) {
+                            when (selectedItem) {
+                                0 -> HomeScreen(imageResourceLoader)
+                                1 -> SearchScreen()
+                                2 -> ProfileScreen()
+                            }
                         }
                     }
                 }
