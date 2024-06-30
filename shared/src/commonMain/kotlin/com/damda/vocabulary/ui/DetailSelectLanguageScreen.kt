@@ -8,12 +8,15 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.SnackbarData
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.damda.vocabulary.core.ImageResourceLoader
 import com.damda.vocabulary.ui.home.SelectionList
+import com.damda.vocabulary.ui.state.AlertState
+import com.damda.vocabulary.ui.state.SnackbarState
 import com.damda.vocabulary.ui.views.EmojiText
 import com.damda.vocabulary.ui.views.views.SelectButton
 
@@ -22,6 +25,8 @@ fun DetailSelectLanguageScreen(
     screenState: ScreenState,
     imageResourceLoader: ImageResourceLoader,
     onScreen: (Screen) -> Unit,
+    onShowAlertDialog: (AlertState) -> Unit,
+    onShowSnackBar: (SnackbarState) -> Unit,
     scrollState: ScrollState = rememberScrollState()
 ) {
     Column(
@@ -43,7 +48,17 @@ fun DetailSelectLanguageScreen(
         )
         Spacer(Modifier.height(24.dp))
         SelectButton(title = "DONE", onClick = {
-            onScreen(Screen.Home)
+            onShowAlertDialog(
+                AlertState(
+                    title = "Confirm",
+                    content = "Do you want to start your lessons at the ${screenState.level} level?",
+                    onDismiss = { },
+                    onConfirm = {
+                        onScreen(Screen.Home)
+                        onShowSnackBar(SnackbarState("Your learning preferences have been saved!"))
+                    }
+                )
+            )
         })
     }
 }
