@@ -36,7 +36,11 @@ fun NavigationHost(
                 is Screen.Home -> HomeScreen(imageResourceLoader) { onScreenSelected(it) }
                 is Screen.Search -> SearchScreen()
                 is Screen.Profile -> ProfileScreen()
-                is Screen.DetailSelectLanguage -> DetailSelectLanguageScreen(screenState)
+                is Screen.DetailSelectLanguage -> DetailSelectLanguageScreen(
+                    screenState = screenState,
+                    imageResourceLoader = imageResourceLoader,
+                    onScreen = { onScreenSelected(it) }
+                )
             }
         }
     }

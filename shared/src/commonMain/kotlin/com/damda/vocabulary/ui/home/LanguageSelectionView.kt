@@ -24,7 +24,8 @@ import com.damda.vocabulary.ui.views.cards.CardBody
 import com.damda.vocabulary.ui.views.cards.ShadowCard
 
 @Composable
-fun LanguageSelectionList(
+fun SelectionList(
+    selections: List<String> = listOf("Korean", "English", "Japanese"),
     imageResourceLoader: ImageResourceLoader,
     onScreen: (Screen) -> Unit
 ) {
@@ -34,16 +35,14 @@ fun LanguageSelectionList(
         arrowRightIconBitmap = imageResourceLoader.loadImageResource("arrow_right.png")
     }
 
-    val languages = listOf("Korean", "English", "Japanese")
-
     Column(
         modifier = Modifier.fillMaxHeight(),
         verticalArrangement = Arrangement.spacedBy(12.dp)
     ) {
-        languages.map { language ->
+        selections.map { language ->
             ShadowCard(onClick = { onScreen(Screen.DetailSelectLanguage(language)) }) {
                 arrowRightIconBitmap?.let { arrowRightIcon ->
-                    LanguageSelectionItem(language, arrowRightIcon)
+                    SelectionItem(language, arrowRightIcon)
                 }
             }
         }
@@ -51,7 +50,7 @@ fun LanguageSelectionList(
 }
 
 @Composable
-fun LanguageSelectionItem(language: String, arrowRightIcon: ImageBitmap) {
+fun SelectionItem(language: String, arrowRightIcon: ImageBitmap) {
     CardBody(Modifier.padding(horizontal = 16.dp, vertical = 8.dp)) {
         Row {
             RegularText(language, color = Color.Black)

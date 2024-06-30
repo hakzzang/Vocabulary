@@ -6,7 +6,7 @@ object Colors {
     // Primary colors
     val primaryColor = Color(0xFFe5e5e5)
     val primaryVariantColor = Color(0xFF1A1821)
-    val secondaryColor = Color(0xFFeae3f1)
+    val secondaryColor = Color(0xFFb9fbc0)
     val secondaryVariantColor = Color(0xFF603544)
 
     // Background and surface colors

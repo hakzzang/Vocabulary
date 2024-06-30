@@ -8,21 +8,32 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import com.damda.vocabulary.core.ImageResourceLoader
+import com.damda.vocabulary.ui.home.SelectionList
 import com.damda.vocabulary.ui.views.EmojiText
-import com.damda.vocabulary.ui.views.RegularText
+import com.damda.vocabulary.ui.views.views.SelectButton
 
 @Composable
 fun DetailSelectLanguageScreen(
     screenState: ScreenState,
+    imageResourceLoader: ImageResourceLoader,
+    onScreen: (Screen) -> Unit,
     scrollState: ScrollState = rememberScrollState()
 ) {
     Column(modifier = Modifier.fillMaxSize().padding(horizontal = 16.dp).verticalScroll(scrollState)) {
         Spacer(Modifier.height(24.dp))
-        EmojiText(text = "Selected Language to Study \uD83E\uDD13 ${screenState.selectedLanguage}", color = Color.Black)
+        EmojiText(text = "Select the level you want to learn for ${screenState.selectedLanguage} \uD83E\uDD13", color = Color.Black)
+        Spacer(Modifier.height(24.dp))
+        SelectionList(
+            selections = listOf("Beginner", "Intermediate", "Advanced"),
+            imageResourceLoader = imageResourceLoader,
+            onScreen = onScreen
+        )
+        Spacer(Modifier.height(24.dp))
+        SelectButton(title = "DONE", onClick = {})
     }
 }
