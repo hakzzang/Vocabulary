@@ -9,5 +9,6 @@ sealed class Screen {
 
 data class ScreenState(
     val currentScreen: Screen = Screen.Home,
-    val selectedLanguage: String = ""
+    val selectedLanguage: String = "",
+    var level: Level = Level.BEGINNER
 )

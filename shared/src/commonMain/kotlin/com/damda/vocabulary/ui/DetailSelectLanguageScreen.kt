@@ -24,16 +24,39 @@ fun DetailSelectLanguageScreen(
     onScreen: (Screen) -> Unit,
     scrollState: ScrollState = rememberScrollState()
 ) {
-    Column(modifier = Modifier.fillMaxSize().padding(horizontal = 16.dp).verticalScroll(scrollState)) {
+    Column(
+        modifier = Modifier.fillMaxSize().padding(horizontal = 16.dp).verticalScroll(scrollState)
+    ) {
         Spacer(Modifier.height(24.dp))
-        EmojiText(text = "Select the level you want to learn for ${screenState.selectedLanguage} \uD83E\uDD13", color = Color.Black)
+        EmojiText(
+            text = "Select the level you want to learn for ${screenState.selectedLanguage} \uD83E\uDD13",
+            color = Color.Black
+        )
         Spacer(Modifier.height(24.dp))
         SelectionList(
             selections = listOf("Beginner", "Intermediate", "Advanced"),
             imageResourceLoader = imageResourceLoader,
-            onScreen = onScreen
+            onSelectedItem = { level ->
+                screenState.level = Level.fromDisplayName(level)
+            },
+            enableSelection = true
         )
         Spacer(Modifier.height(24.dp))
-        SelectButton(title = "DONE", onClick = {})
+        SelectButton(title = "DONE", onClick = {
+            onScreen(Screen.Home)
+        })
     }
+}
+
+enum class Level(val displayName: String) {
+    BEGINNER("Beginner"),
+    INTERMEDIATE("Intermediate"),
+    ADVANCED("Advanced");
+
+    companion object {
+        fun fromDisplayName(displayName: String): Level {
+            return entries.find { it.displayName == displayName } ?: BEGINNER
+        }
+    }
+
 }

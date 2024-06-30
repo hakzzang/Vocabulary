@@ -30,7 +30,7 @@ fun HomeScreen(
         SelectionList(
             selections = listOf("Korean", "English", "Japanese"),
             imageResourceLoader = imageResourceLoader,
-            onScreen = onScreen
+            onSelectedItem = { language -> onScreen(Screen.DetailSelectLanguage(language)) }
         )
         Spacer(Modifier.height(24.dp))
         GreetingCardSection(imageResourceLoader) {

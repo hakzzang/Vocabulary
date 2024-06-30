@@ -18,6 +18,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.unit.dp
 import com.damda.vocabulary.core.ImageResourceLoader
+import com.damda.vocabulary.themes.Colors
 import com.damda.vocabulary.ui.Screen
 import com.damda.vocabulary.ui.views.RegularText
 import com.damda.vocabulary.ui.views.cards.CardBody
@@ -27,9 +28,11 @@ import com.damda.vocabulary.ui.views.cards.ShadowCard
 fun SelectionList(
     selections: List<String> = listOf("Korean", "English", "Japanese"),
     imageResourceLoader: ImageResourceLoader,
-    onScreen: (Screen) -> Unit
+    onSelectedItem: (String) -> Unit,
+    enableSelection: Boolean = false
 ) {
     var arrowRightIconBitmap by remember { mutableStateOf<ImageBitmap?>(null) }
+    var selectedItem by remember { mutableStateOf<String?>(null) }
 
     LaunchedEffect(Unit) {
         arrowRightIconBitmap = imageResourceLoader.loadImageResource("arrow_right.png")
@@ -40,7 +43,21 @@ fun SelectionList(
         verticalArrangement = Arrangement.spacedBy(12.dp)
     ) {
         selections.map { language ->
-            ShadowCard(onClick = { onScreen(Screen.DetailSelectLanguage(language)) }) {
+            val isSelected = enableSelection && selectedItem == language
+            val backgroundColor = if (isSelected) {
+                Colors.secondaryColor  // 선택된 항목의 배경색
+            } else {
+                Color.White
+            }
+            ShadowCard(
+                backgroundColor = backgroundColor,
+                onClick = {
+                    if (enableSelection) {
+                        selectedItem = language
+                    }
+                    onSelectedItem(language)
+                }
+            ) {
                 arrowRightIconBitmap?.let { arrowRightIcon ->
                     SelectionItem(language, arrowRightIcon)
                 }
