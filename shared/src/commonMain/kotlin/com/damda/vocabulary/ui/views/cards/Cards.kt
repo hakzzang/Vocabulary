@@ -4,6 +4,8 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.IntrinsicSize
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -33,10 +35,42 @@ fun GreetingCardSection(imageResourceLoader: ImageResourceLoader) {
     ShadowCard {
         Column {
             // Image 영역
-            CardHeader(imageResourceLoader)
+            CardHeader(
+                imageResourceLoader = imageResourceLoader,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(128.dp)
+                    .clip(RoundedCornerShape(topStart = 16.dp, topEnd = 16.dp))
+            )
 
             // Text 영역
-            CardBody()
+            CardBody(modifier = Modifier.padding(16.dp)) {
+                RegularText(
+                    text = "한국어 학습",
+                    fontSize = 14.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = Color.Black,
+                    modifier = Modifier.padding(bottom = 8.dp),
+                    style = MaterialTheme.typography.bodyMedium
+                )
+                EmojiText(
+                    text = "\uD83D\uDD70\uFE0F 시작: 2024년 6월 29일, 오전 1시31분",
+                    fontSize = 12.sp,
+                    color = Color.Black,
+                    modifier = Modifier.padding(bottom = 4.dp)
+                )
+                EmojiText(
+                    text = "\uD83D\uDCCD 챕터3까지 학습을 진행했습니다.",
+                    fontSize = 12.sp,
+                    color = Color.Black,
+                    modifier = Modifier.padding(bottom = 4.dp)
+                )
+                RegularText(
+                    text = "시작해볼까요?",
+                    fontSize = 12.sp,
+                    color = Color.Black
+                )
+            }
         }
     }
 }
@@ -82,54 +116,23 @@ fun ShadowCard(
                 shape = RoundedCornerShape(borderRadius)
             ) // 테두리 색상과 두께 설정
             .clip(RoundedCornerShape(borderRadius)) // 모서리 자르기
-            .padding(16.dp) // 기본 패딩 추가
     ) {
         content() // 콘텐츠를 표시
     }
 }
 
 @Composable
-fun CardHeader(imageResourceLoader: ImageResourceLoader) {
+fun CardHeader(imageResourceLoader: ImageResourceLoader, modifier: Modifier = Modifier) {
     AsyncImage(
         imageResourceLoader = imageResourceLoader,
         imageResName = "pic8.jpg",
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(200.dp)
-            .clip(RoundedCornerShape(topStart = 16.dp, topEnd = 16.dp))
+        modifier = modifier
     )
 }
 
 @Composable
-fun CardBody() {
-    Column(
-        modifier = Modifier
-            .padding(16.dp)
-    ) {
-        RegularText(
-            text = "1Follower is 1develop second",
-            fontSize = 20.sp,
-            fontWeight = FontWeight.Bold,
-            color = Color.Black,
-            modifier = Modifier.padding(bottom = 8.dp),
-            style = MaterialTheme.typography.bodyMedium
-        )
-        EmojiText(
-            text = "\uD83D\uDD70\uFE0F 시작: 2024년 6월 29일, 오전 1시31분",
-            fontSize = 16.sp,
-            color = Color.Black,
-            modifier = Modifier.padding(bottom = 4.dp)
-        )
-        EmojiText(
-            text = "\uD83D\uDCCD 안드로이드 앱 개발",
-            fontSize = 16.sp,
-            color = Color.Black,
-            modifier = Modifier.padding(bottom = 4.dp)
-        )
-        RegularText(
-            text = "시작해볼까요?",
-            fontSize = 16.sp,
-            color = Color.Black
-        )
+fun CardBody(modifier: Modifier = Modifier, content: @Composable () -> Unit) {
+    Column(modifier = modifier) {
+        content()
     }
 }

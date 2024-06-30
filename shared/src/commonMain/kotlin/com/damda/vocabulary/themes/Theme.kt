@@ -5,7 +5,7 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 
 val VocabularyColorScheme = lightColorScheme(
-    primary = Colors.backgroundColor,
+    primary = Colors.primaryColor,
     primaryContainer = Colors.backgroundColor,
     background = Colors.backgroundColor,
     onBackground = Colors.onBackgroundColor

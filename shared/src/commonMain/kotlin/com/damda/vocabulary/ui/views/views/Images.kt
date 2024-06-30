@@ -2,6 +2,7 @@ package com.damda.vocabulary.ui.views.views
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.CircularProgressIndicator
@@ -25,13 +26,11 @@ fun AsyncImage(
     imageResourceLoader: ImageResourceLoader,
     imageResName: String,
     contentDescription: String = "",
-    size: Int = 40,
     contentScale: ContentScale = ContentScale.Crop,
     modifier: Modifier
 ) {
     var bitmap by remember { mutableStateOf<ImageBitmap?>(null) }
     var isLoading by remember { mutableStateOf(true) }
-
 
     LaunchedEffect(imageResName) {
         bitmap = imageResourceLoader.loadImageResource(imageResName)
@@ -46,8 +45,7 @@ fun AsyncImage(
                 Image(
                     bitmap = it,
                     contentDescription = contentDescription,
-                    modifier = Modifier
-                        .size(size.dp),
+                    modifier = Modifier.fillMaxSize(),
                     contentScale = contentScale
                 )
             }

@@ -64,12 +64,10 @@ fun NativeMainApp(
                         if (windowSize == WindowWidthSizeClass.Medium || windowSize == WindowWidthSizeClass.Expanded) {
                             NavigationRails(NAVIGATION_ITEMS, selectedItem) { selectedItem = it }
                         }
-                        Box(modifier = Modifier.padding(innerPadding).weight(1f)) {
-                            when (selectedItem) {
-                                0 -> HomeScreen(imageResourceLoader)
-                                1 -> SearchScreen()
-                                2 -> ProfileScreen()
-                            }
+                        when (selectedItem) {
+                            0 -> HomeScreen(imageResourceLoader)
+                            1 -> SearchScreen()
+                            2 -> ProfileScreen()
                         }
                     }
                 }
