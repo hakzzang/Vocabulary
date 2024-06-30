@@ -1,6 +1,8 @@
 package com.damda.vocabulary
 
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.material3.windowsizeclass.ExperimentalMaterial3WindowSizeClassApi
 import androidx.compose.material3.windowsizeclass.WindowWidthSizeClass
 import androidx.compose.material3.windowsizeclass.calculateWindowSizeClass
@@ -20,6 +22,8 @@ import com.damda.vocabulary.themes.LocalRegularFontFamily
 import com.damda.vocabulary.themes.VocabularyTheme
 import com.damda.vocabulary.ui.views.MainViewModel
 import com.damda.vocabulary.ui.views.navigations.NavigationHost
+import kotlinx.coroutines.MainScope
+import kotlinx.coroutines.launch
 
 @Composable
 fun MainApp(
@@ -28,6 +32,8 @@ fun MainApp(
     mainViewModel: MainViewModel = MainViewModel()
 ) {
     val screenState by mainViewModel.screen.collectAsState()
+    val alertState by mainViewModel.alertState.collectAsState()
+
     val windowSize = rememberWindowSize()
     var regularFontFamily by remember { mutableStateOf<FontFamily?>(null) }
     var emojiFontFamily by remember { mutableStateOf<FontFamily?>(null) }
@@ -48,15 +54,37 @@ fun MainApp(
                 NavigationHost(
                     windowSize = windowSize,
                     screenState = screenState,
+                    snackbarHostState = mainViewModel.snackbarHostState,
                     onScreenSelected = { mainViewModel.navigateTo(it) },
-                    imageResourceLoader = imageResourceLoader)
+                    imageResourceLoader = imageResourceLoader,
+                    onShowAlertDialog = {
+                        mainViewModel.showAlertDialog(it)
+                    },
+                    onShowSnackBar = {
+                        MainScope().launch {
+                            mainViewModel.showSnackbar(it)
+                        }
+                    }
+                )
+
+                if (alertState != null) {
+                    AlertDialog(
+                        onDismissRequest = { mainViewModel.dismissAlertDialog() },
+                        confirmButton = {
+                            TextButton(onClick = { mainViewModel.confirmAlertDialog() }) {
+                                Text("OK")
+                            }
+                        },
+                        title = { Text(alertState!!.title) },
+                        text = { Text(alertState!!.content) }
+                    )
+                }
             }
         }
     } else {
         Text("Loading...")
     }
 }
-
 
 
 @OptIn(ExperimentalMaterial3WindowSizeClassApi::class)

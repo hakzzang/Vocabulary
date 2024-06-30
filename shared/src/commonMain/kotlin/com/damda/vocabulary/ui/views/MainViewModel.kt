@@ -35,6 +35,10 @@ class MainViewModel {
 
     fun dismissAlertDialog() {
         _alertState.value?.onDismiss?.invoke()
+    }
+
+    fun confirmAlertDialog() {
+        _alertState.value?.onConfirm?.invoke()
         _alertState.value = null
     }
 }
