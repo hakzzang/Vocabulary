@@ -2,6 +2,7 @@ package com.damda.vocabulary.ui.views.cards
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.IntrinsicSize
@@ -31,14 +32,14 @@ import com.damda.vocabulary.ui.views.RegularText
 import com.damda.vocabulary.ui.views.views.AsyncImage
 
 @Composable
-fun GreetingCardSection(imageResourceLoader: ImageResourceLoader) {
-    ShadowCard {
+fun GreetingCardSection(imageResourceLoader: ImageResourceLoader, onClick: () -> Unit) {
+    ShadowCard(onClick = onClick) {
         Column {
             // Image 영역
             CardHeader(
                 imageResourceLoader = imageResourceLoader,
                 modifier = Modifier
-                    .fillMaxWidth()
+                    .fillMaxWidth(0.3f)
                     .height(128.dp)
                     .clip(RoundedCornerShape(topStart = 16.dp, topEnd = 16.dp))
             )
@@ -81,6 +82,7 @@ fun ShadowCard(
     backgroundColor: Color = Color.White, // Compose의 Color로 변경
     borderColor: Color = Color.Black, // Compose의 Color로 변경
     borderRadius: Dp = 16.dp, // CSSNumeric 대신 Dp 사용
+    onClick: () -> Unit,
     content: @Composable () -> Unit
 ) {
     Box(
@@ -116,6 +118,7 @@ fun ShadowCard(
                 shape = RoundedCornerShape(borderRadius)
             ) // 테두리 색상과 두께 설정
             .clip(RoundedCornerShape(borderRadius)) // 모서리 자르기
+            .clickable { onClick() }
     ) {
         content() // 콘텐츠를 표시
     }
