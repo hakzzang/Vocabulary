@@ -75,6 +75,11 @@ fun MainApp(
                                 Text("OK")
                             }
                         },
+                        dismissButton ={
+                            TextButton(onClick = { mainViewModel.dismissAlertDialog() }) {
+                                Text("Cancel")
+                            }
+                        },
                         title = { Text(alertState!!.title) },
                         text = { Text(alertState!!.content) }
                     )
